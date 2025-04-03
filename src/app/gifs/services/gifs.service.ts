@@ -18,18 +18,31 @@ export class GifsService {
     this.loadTrendingGifs();
   }
 
-  loadTrendingGifs(){
+  loadTrendingGifs() {
     this.http.get<GiphyResponse>(`${environment.giphyUrl}/gifs/trending`, {
       params: {
         api_key: environment.giphyApiKey,
         limit: 20,
       }
-    }).subscribe( (resp)=> {
+    }).subscribe((resp) => {
       const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
       this.trendingGifs.set(gifs);
       this.trendingGifsLoading.set(false);
-      console.log({gifs});
+      console.log({ gifs });
     })
+  }
+
+  searchGifs(query: string) {
+    this.http.get<GiphyResponse>(`${environment.giphyUrl}/gifs/search`, {
+      params: {
+        api_key: environment.giphyApiKey,
+        q: query,
+        limit: 20,
+      }
+    }).subscribe((resp) => {
+      const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
+      console.log({ gifs });
+    });
   }
 
 
