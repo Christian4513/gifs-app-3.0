@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+
 export const routes: Routes = [
   // este path esta cargado con lazy load (carga peresoza)
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
         path: 'search',
         loadComponent: () =>
           import('./gifs/pages/search-page/search-page.component').then(m => m.SearchPageComponent)
+      },
+      {
+        path: 'history/:query',
+        loadComponent: () =>
+          import('./gifs/pages/gif-history/gif-history.component').then(m => m.GifHistoryComponent)
       },
       {
         path: '**',
