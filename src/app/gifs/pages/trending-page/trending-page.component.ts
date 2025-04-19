@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild, viewChild } from '@angular/core';
 import { GifsService } from '../../services/gifs.service';
 
 @Component({
@@ -10,10 +10,10 @@ import { GifsService } from '../../services/gifs.service';
 export class TrendingPageComponent {
    gifService = inject( GifsService );
 
-   scrollDivRef = viewChild<ElementRef<HTMLDivElement>>('groupDiv');
+   @ViewChild('groupDiv') scrollDivRef!: ElementRef<HTMLDivElement>;
 
    onScroll( event: Event){
-    const scrollDiv = this.scrollDivRef()?.nativeElement;
+    const scrollDiv = this.scrollDivRef?.nativeElement;
     if(!scrollDiv) return;
     const scrollTop = scrollDiv.scrollTop;
     const clientHeight = scrollDiv.clientHeight;
