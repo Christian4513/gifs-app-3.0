@@ -1,5 +1,12 @@
-<h3 class="text-2xl font-bold mt-4">Mostrando: {{ query() }}</h3>
+<!-- Título que muestra la consulta de búsqueda -->
+<h3 class="text-2xl font-bold mt-4">
+  Mostrando: {{ query() }}
+</h3>
 
+<!-- Sección que contiene la lista de GIFs obtenidos de la búsqueda -->
 <section class="py-5">
+
+  <!-- Componente que renderiza la lista de GIFs -->
   <gif-list [gifs]="gifsByKey()"></gif-list>
+
 </section>

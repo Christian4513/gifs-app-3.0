@@ -1,5 +1,8 @@
 import { Component, input } from '@angular/core';
 
+/**
+ * Componente que representa un elemento individual dentro de una lista de GIFs.
+ */
 @Component({
   selector: 'gif-list-item',
   imports: [],
@@ -8,5 +11,10 @@ import { Component, input } from '@angular/core';
 })
 export class GifListItemComponent {
 
-imageUrl = input.required<string>()
+  /**
+   * URL de la imagen del GIF.
+   *
+   * @type {string}
+   */
+  imageUrl = input.required<string>();
 }

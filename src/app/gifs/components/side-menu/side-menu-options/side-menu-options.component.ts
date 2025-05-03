@@ -2,13 +2,36 @@ import { GifsService } from './../../../services/gifs.service';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
+/**
+ * Representa una opción del menú lateral de navegación.
+ */
 interface MenuOption {
+  /**
+   * Clase del icono de FontAwesome que representa la opción.
+   */
   icon: string;
+
+  /**
+   * Etiqueta visible del botón en el menú.
+   */
   label: string;
+
+  /**
+   * Ruta de navegación asociada a la opción.
+   */
   route: string;
+
+  /**
+   * Descripción breve de la opción.
+   */
   sublabel: string;
 }
 
+/**
+ * Componente que gestiona las opciones del menú lateral de navegación.
+ *
+ * Contiene enlaces a distintas secciones de la aplicación, incluyendo tendencias y búsqueda de GIFs.
+ */
 @Component({
   selector: 'gif-side-menu-options',
   imports: [RouterLink, RouterLinkActive],
@@ -17,14 +40,16 @@ interface MenuOption {
 })
 export class SideMenuOptionsComponent {
 
-  gifService = inject(GifsService)
+  /** Servicio para manejar la lógica de GIFs. */
+  gifService = inject(GifsService);
 
+  /** Opciones del menú lateral. */
   menuOptions: MenuOption[] = [
     {
       icon: 'fa-solid fa-chart-line',
       label: 'Trending',
       route: '/dashboard/trending',
-      sublabel: 'Gifs Polulares'
+      sublabel: 'Gifs Populares'
     },
     {
       icon: 'fa-solid fa-magnifying-glass',
@@ -32,8 +57,5 @@ export class SideMenuOptionsComponent {
       route: '/dashboard/search',
       sublabel: 'Buscar Gifs'
     }
-  ]
-
-
-
+  ];
 }

@@ -1,27 +1,36 @@
-<!-- <section class="py-5">
-  <gif-list [gifs]="gifService.trendingGifs()"></gif-list>
-</section> -->
-
+<!-- Contenedor principal que muestra los GIFs en una cuadrícula -->
 <div
  class="h-screen overflow-y-scroll grid grid-cols-2 md:grid-cols-4 gap-4 pt-5"
  #groupDiv
  (scroll)="onScroll($event)"
 >
 
+  <!-- Itera sobre los grupos de GIFs usando la sintaxis Angular (@for) -->
   @for (group of gifService.trendingGifGroup(); track $index) {
+
+    <!-- Contenedor para cada grupo de GIFs con distribución en cuadrícula -->
     <div class="grid gap-4">
+
+      <!-- Itera sobre cada GIF dentro del grupo -->
       @for (gif of group; track gif.id) {
+
+        <!-- Contenedor de cada GIF individual -->
         <div>
           <img
            class="h-full w-full rounded-lg object-cover"
            [src]="gif.url"
            [alt]="gif.title"
            />
-      </div>
+        </div>
+
       }
+
     </div>
+
   }
+
 </div>
+
 
 
 
