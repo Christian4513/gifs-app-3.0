@@ -64,6 +64,7 @@ export class GifsService {
         ...currentGifs,
         ...gifs
       ]);
+      this.trendingPage.update(( current => current + 1));
       this.trendingGifsLoading.set(false);
       console.log({ gifs });
     })
