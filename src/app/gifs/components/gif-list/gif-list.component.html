@@ -1,12 +1,14 @@
-<!-- Contenedor principal que usa grid para organizar los GIFs -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
 
-  <!-- Itera sobre la lista de GIFs utilizando la nueva sintaxis de Angular (@for) -->
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-5">
+
+
   @for (gif of gifs(); track gif) {
 
-    <!-- Renderiza un componente individual de GIF y le pasa la URL de la imagen -->
+
     <gif-list-item [imageUrl]="gif.url"></gif-list-item>
 
   }
 
 </div>
+
