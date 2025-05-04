@@ -110,7 +110,7 @@ export class GifsService {
       params: {
         api_key: environment.giphyApiKey,
         q: query,
-        limit: 20,
+        limit: 50,
       }
     }).pipe(
       map(({ data }) => data),
