@@ -6,12 +6,6 @@ import { Gif } from '../interfaces/gif.interface';
 import { GifMapper } from '../mapper/gif.mapper';
 import { map, tap } from 'rxjs';
 
-/**
- * Clave utilizada para almacenar los GIFs en el almacenamiento local.
- *
- * @constant
- * @type {string}
- */
 const GIF_KEY = 'gifs';
 
 /**
@@ -28,7 +22,7 @@ const loadFromLocalStorage = (): Record<string, Gif[]> => {
 
 /**
  * Servicio para gestionar los GIFs mediante la API de Giphy y el almacenamiento local.
- * Permite cargar tendencias, realizar búsquedas y gestionar historial de búsquedas con reactividad.
+ * Se encarga de cargar tendencias, buscar GIFs y mantener historial.
  */
 @Injectable({
   providedIn: 'root'
@@ -78,7 +72,7 @@ export class GifsService {
    *
    * @returns {string[]} Lista de términos buscados.
    */
-  searchHistoryKeys = computed(() => Object.keys(this.searchHistory()))
+  serachHistoryKeys = computed(() => Object.keys(this.searchHistory()))
 
   /**
    * Constructor del servicio.
