@@ -6,6 +6,10 @@ import { Gif } from '../interfaces/gif.interface';
 import { GifMapper } from '../mapper/gif.mapper';
 import { map, tap } from 'rxjs';
 
+/**
+ * @constant {string} GIF_KEY
+ * @description Clave utilizada para almacenar y recuperar los GIFs del historial en el `localStorage`.
+ */
 const GIF_KEY = 'gifs';
 
 /**
@@ -16,7 +20,6 @@ const GIF_KEY = 'gifs';
 const loadFromLocalStorage = (): Record<string, Gif[]> => {
   const gifsFromLocalStorage = localStorage.getItem(GIF_KEY) ?? '{}';
   const gifs = JSON.parse(gifsFromLocalStorage);
-  console.log(gifs);
   return gifs;
 }
 
@@ -58,7 +61,6 @@ export class GifsService {
     for(let i = 0; i < this.trendingGifs().length; i += 3){
       groups.push(this.trendingGifs().slice(i, i + 3));
     }
-    console.log(groups);
     return groups;
   });
 
@@ -114,7 +116,6 @@ export class GifsService {
       ]);
       this.trendingPage.update(current => current + 1);
       this.trendingGifsLoading.set(false);
-      console.log({ gifs });
     })
   }
 

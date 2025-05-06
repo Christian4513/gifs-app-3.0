@@ -1,0 +1,726 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>gifs-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">gifs-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TrendingPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/gifs/pages/trending-page/trending-page.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente que muestra los GIFs de tendencias.</p>
+<p>Administra el scroll y la carga de nuevos GIFs cuando el usuario llega al final de la lista.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>AfterViewInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-trending-page</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./trending-page.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./trending-page.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#gifService" >gifService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#scrollDivRef" >scrollDivRef</a>
+                            </li>
+                            <li>
+                                <a href="#scrollStateService" >scrollStateService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#onScroll" >onScroll</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/gifs/pages/trending-page/trending-page.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Ciclo de vida que se ejecuta después de inicializar la vista del componente.</p>
+<p>Restaura la posición del scroll desde el servicio <code>ScrollStateService</code>.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onScroll"></a>
+                    <span class="name">
+                        <span ><b>onScroll</b></span>
+                        <a href="#onScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onScroll(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/gifs/pages/trending-page/trending-page.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Evento que se dispara al hacer scroll dentro del contenedor.</p>
+<p>Guarda la posición del scroll y carga más GIFs si el usuario se aproxima al final.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Evento de scroll emitido por el contenedor.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gifService"></a>
+                    <span class="name">
+                        <span ><b>gifService</b></span>
+                        <a href="#gifService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(GifsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/gifs/pages/trending-page/trending-page.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio que gestiona los GIFs de tendencias.</p>
+<p>Se inyecta automáticamente mediante <code>inject</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollDivRef"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>scrollDivRef</b></span>
+                        <a href="#scrollDivRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;groupDiv&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/gifs/pages/trending-page/trending-page.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Referencia al contenedor del grupo de GIFs.</p>
+<p>Usado para manejar eventos de scroll manualmente.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollStateService"></a>
+                    <span class="name">
+                        <span ><b>scrollStateService</b></span>
+                        <a href="#scrollStateService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ScrollStateService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/gifs/pages/trending-page/trending-page.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Servicio que gestiona y guarda el estado del scroll.</p>
+<p>Se inyecta automáticamente mediante <code>inject</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, ElementRef, inject, ViewChild } from &#x27;@angular/core&#x27;;
+import { GifsService } from &#x27;../../services/gifs.service&#x27;;
+import { ScrollStateService } from &#x27;../../../shared/services/scroll-state.service&#x27;;
+
+/**
+ * Componente que muestra los GIFs de tendencias.
+ *
+ * Administra el scroll y la carga de nuevos GIFs cuando el usuario llega al final de la lista.
+ */
+@Component({
+  selector: &#x27;app-trending-page&#x27;,
+  templateUrl: &#x27;./trending-page.component.html&#x27;,
+  styleUrl: &#x27;./trending-page.component.css&#x27;
+})
+export class TrendingPageComponent implements AfterViewInit {
+
+  /**
+   * Servicio que gestiona los GIFs de tendencias.
+   *
+   * Se inyecta automáticamente mediante &#x60;inject&#x60;.
+   */
+  gifService &#x3D; inject(GifsService);
+
+  /**
+   * Servicio que gestiona y guarda el estado del scroll.
+   *
+   * Se inyecta automáticamente mediante &#x60;inject&#x60;.
+   */
+  scrollStateService &#x3D; inject(ScrollStateService);
+
+  /**
+   * Referencia al contenedor del grupo de GIFs.
+   *
+   * Usado para manejar eventos de scroll manualmente.
+   */
+  @ViewChild(&#x27;groupDiv&#x27;) scrollDivRef!: ElementRef&lt;HTMLDivElement&gt;;
+
+  /**
+   * Ciclo de vida que se ejecuta después de inicializar la vista del componente.
+   *
+   * Restaura la posición del scroll desde el servicio &#x60;ScrollStateService&#x60;.
+   */
+  ngAfterViewInit(): void {
+    const scrollDiv &#x3D; this.scrollDivRef?.nativeElement;
+    if (!scrollDiv) return;
+
+    scrollDiv.scrollTop &#x3D; this.scrollStateService.trendigScrollState();
+  }
+
+  /**
+   * Evento que se dispara al hacer scroll dentro del contenedor.
+   *
+   * Guarda la posición del scroll y carga más GIFs si el usuario se aproxima al final.
+   *
+   * @param {Event} event - Evento de scroll emitido por el contenedor.
+   */
+  onScroll(event: Event): void {
+    const scrollDiv &#x3D; this.scrollDivRef?.nativeElement;
+    if (!scrollDiv) return;
+
+    const scrollTop &#x3D; scrollDiv.scrollTop;
+    const clientHeight &#x3D; scrollDiv.clientHeight;
+    const scrollHeight &#x3D; scrollDiv.scrollHeight;
+
+    console.log({ scrollDiv, clientHeight, scrollHeight });
+
+    const isAtBottom &#x3D; scrollTop + clientHeight + 300 &gt;&#x3D; scrollHeight;
+
+    // Guarda la posición del scroll en el servicio
+    this.scrollStateService.trendigScrollState.set(scrollTop);
+
+    // Si el usuario llega al final, carga más GIFs
+    if (isAtBottom) {
+      this.gifService.loadTrendingGifs();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- Contenedor principal que muestra los GIFs en una cuadrícula --&gt;
+&lt;div
+ class&#x3D;&quot;h-screen overflow-y-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-5&quot;
+ #groupDiv
+ (scroll)&#x3D;&quot;onScroll($event)&quot;
+&gt;
+
+  &lt;!-- Itera sobre los grupos de GIFs usando la sintaxis Angular (@for) --&gt;
+  @for (group of gifService.trendingGifGroup(); track $index) {
+
+    &lt;!-- Contenedor para cada grupo de GIFs con distribución en cuadrícula --&gt;
+    &lt;div class&#x3D;&quot;grid gap-4&quot;&gt;
+
+      &lt;!-- Itera sobre cada GIF dentro del grupo --&gt;
+      @for (gif of group; track gif.id) {
+
+        &lt;!-- Contenedor de cada GIF individual --&gt;
+        &lt;div&gt;
+          &lt;img
+           class&#x3D;&quot;h-full w-full rounded-lg object-cover&quot;
+           [src]&#x3D;&quot;gif.url&quot;
+           [alt]&#x3D;&quot;gif.title&quot;
+           /&gt;
+        &lt;/div&gt;
+
+      }
+
+    &lt;/div&gt;
+
+  }
+
+&lt;/div&gt;
+
+
+
+
+
+
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- Contenedor principal que muestra los GIFs en una cuadrícula --><div class="h-screen overflow-y-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-5" #groupDiv (scroll)="onScroll($event)">  <!-- Itera sobre los grupos de GIFs usando la sintaxis Angular (@for) -->  @for (group of gifService.trendingGifGroup(); track $index) {    <!-- Contenedor para cada grupo de GIFs con distribución en cuadrícula -->    <div class="grid gap-4">      <!-- Itera sobre cada GIF dentro del grupo -->      @for (gif of group; track gif.id) {        <!-- Contenedor de cada GIF individual -->        <div>          <img           class="h-full w-full rounded-lg object-cover"           [src]="gif.url"           [alt]="gif.title"           />        </div>      }    </div>  }</div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DahsboardPageComponent', 'selector': 'app-dahsboard-page'},{'name': 'GifHistoryComponent', 'selector': 'app-gif-history'},{'name': 'GifListComponent', 'selector': 'gif-list'},{'name': 'GifListItemComponent', 'selector': 'gif-list-item'},{'name': 'SearchPageComponent', 'selector': 'app-search-page'},{'name': 'SideMenuComponent', 'selector': 'gif-side-menu'},{'name': 'SideMenuHeaderComponent', 'selector': 'gif-side-menu-header'},{'name': 'SideMenuOptionsComponent', 'selector': 'gif-side-menu-options'},{'name': 'TrendingPageComponent', 'selector': 'app-trending-page'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TrendingPageComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TrendingPageComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
