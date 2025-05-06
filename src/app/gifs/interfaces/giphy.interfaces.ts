@@ -1,186 +1,372 @@
 /**
- * Respuesta de la API de Giphy que contiene datos de GIFs, información de estado y paginación.
+ * @interface GiphyResponse
+ * @description Respuesta de la API de Giphy que contiene datos de GIFs, información de estado y paginación.
  */
 export interface GiphyResponse {
-  /** Lista de elementos GIF obtenidos. */
-  data:       GiphyItem[];
-  /** Información de estado de la respuesta. */
-  meta:       Meta;
-  /** Información sobre la paginación de resultados. */
+  /**
+   * Lista de elementos GIF obtenidos.
+   */
+  data: GiphyItem[];
+
+  /**
+   * Información de estado de la respuesta.
+   */
+  meta: Meta;
+
+  /**
+   * Información sobre la paginación de resultados.
+   */
   pagination: Pagination;
 }
 
 /**
- * Representación de un GIF dentro de la API de Giphy.
+ * @interface GiphyItem
+ * @description Representación de un GIF dentro de la API de Giphy.
  */
 export interface GiphyItem {
   /** Tipo de elemento, normalmente 'gif'. */
-  type:                     Type;
+  type: Type;
+
   /** Identificador único del GIF. */
-  id:                       string;
+  id: string;
+
   /** URL del GIF en la API de Giphy. */
-  url:                      string;
+  url: string;
+
   /** Identificador amigable utilizado en la API. */
-  slug:                     string;
+  slug: string;
+
   /** URLs cortas proporcionadas por Giphy. */
-  bitlyGIFURL:              string;
-  bitlyURL:                 string;
-  embedURL:                 string;
+  bitlyGIFURL: string;
+
+  /** URL corta alternativa. */
+  bitlyURL: string;
+
+  /** URL para embeber el GIF. */
+  embedURL: string;
+
   /** Nombre de usuario del creador del GIF. */
-  username:                 string;
+  username: string;
+
   /** Fuente original del GIF. */
-  source:                   string;
+  source: string;
+
   /** Título del GIF. */
-  title:                    string;
+  title: string;
+
   /** Clasificación del contenido (Ej. 'G'). */
-  rating:                   Rating;
+  rating: Rating;
+
   /** URL del contenido si está disponible. */
-  contentURL:               string;
+  contentURL: string;
+
   /** Dominio de la fuente. */
-  sourceTLD:                string;
-  sourcePostURL:            string;
+  sourceTLD: string;
+
+  /** URL del post original. */
+  sourcePostURL: string;
+
   /** Indica si el GIF es un sticker. */
-  isSticker:                number;
+  isSticker: number;
+
   /** Fecha de importación del GIF. */
-  importDatetime:           Date;
+  importDatetime: Date;
+
   /** Fecha en que el GIF comenzó a ser tendencia. */
-  trendingDatetime:         Date | TrendingDatetimeEnum;
+  trendingDatetime: Date | TrendingDatetimeEnum;
+
   /** Diferentes formatos y tamaños del GIF. */
-  images:                   Images;
+  images: Images;
+
   /** Datos analíticos de interacción. */
   analyticsResponsePayload: string;
-  analytics:                Analytics;
+
+  /** Datos analíticos de eventos. */
+  analytics: Analytics;
+
   /** Texto alternativo del GIF. */
-  altText:                  string;
+  altText: string;
+
   /** Información del usuario, si está disponible. */
-  user?:                    User;
+  user?: User;
 }
 
 /**
- * Información analítica relacionada con interacciones de usuario en Giphy.
+ * @interface Analytics
+ * @description Información analítica relacionada con interacciones de usuario en Giphy.
  */
 export interface Analytics {
-  onload:  Onclick;
+  /** Evento de carga del GIF. */
+  onload: Onclick;
+
+  /** Evento de clic sobre el GIF. */
   onclick: Onclick;
-  onsent:  Onclick;
+
+  /** Evento de envío del GIF. */
+  onsent: Onclick;
 }
 
-/** Representa un enlace analítico para eventos específicos. */
+/**
+ * @interface Onclick
+ * @description Representa un enlace analítico para eventos específicos.
+ */
 export interface Onclick {
+  /** URL del evento analítico. */
   url: string;
 }
 
 /**
- * Representación de las imágenes de un GIF en distintos formatos.
+ * @interface Images
+ * @description Representación de las imágenes de un GIF en distintos formatos.
  */
 export interface Images {
-  original:               FixedHeight;
-  downsized:              The480_WStill;
-  downsizedLarge:         The480_WStill;
-  downsizedMedium:        The480_WStill;
-  downsizedSmall:         DownsizedSmall;
-  downsizedStill:         The480_WStill;
-  fixedHeight:            FixedHeight;
+  /** Imagen en resolución original. */
+  original: FixedHeight;
+
+  /** Imagen reducida. */
+  downsized: The480_WStill;
+
+  /** Imagen grande reducida. */
+  downsizedLarge: The480_WStill;
+
+  /** Imagen media reducida. */
+  downsizedMedium: The480_WStill;
+
+  /** Versión pequeña en MP4. */
+  downsizedSmall: DownsizedSmall;
+
+  /** Imagen reducida y estática. */
+  downsizedStill: The480_WStill;
+
+  /** Altura fija. */
+  fixedHeight: FixedHeight;
+
+  /** Altura fija con muestreo. */
   fixedHeightDownsampled: FixedHeight;
-  fixedHeightSmall:       FixedHeight;
-  fixedHeightSmallStill:  The480_WStill;
-  fixedHeightStill:       The480_WStill;
-  fixedWidth:             FixedHeight;
-  fixedWidthDownsampled:  FixedHeight;
-  fixedWidthSmall:        FixedHeight;
-  fixedWidthSmallStill:   The480_WStill;
-  fixedWidthStill:        The480_WStill;
-  looping:                Looping;
-  originalStill:          The480_WStill;
-  originalMp4:            DownsizedSmall;
-  preview:                DownsizedSmall;
-  previewGIF:             The480_WStill;
-  previewWebp:            The480_WStill;
-  the480WStill:           The480_WStill;
-  hd?:                    DownsizedSmall;
+
+  /** Altura fija en tamaño pequeño. */
+  fixedHeightSmall: FixedHeight;
+
+  /** Altura fija pequeña y estática. */
+  fixedHeightSmallStill: The480_WStill;
+
+  /** Altura fija estática. */
+  fixedHeightStill: The480_WStill;
+
+  /** Ancho fijo. */
+  fixedWidth: FixedHeight;
+
+  /** Ancho fijo con muestreo. */
+  fixedWidthDownsampled: FixedHeight;
+
+  /** Ancho fijo en tamaño pequeño. */
+  fixedWidthSmall: FixedHeight;
+
+  /** Ancho fijo pequeño y estático. */
+  fixedWidthSmallStill: The480_WStill;
+
+  /** Ancho fijo estático. */
+  fixedWidthStill: The480_WStill;
+
+  /** Versión en bucle. */
+  looping: Looping;
+
+  /** Imagen estática original. */
+  originalStill: The480_WStill;
+
+  /** Versión MP4 original. */
+  originalMp4: DownsizedSmall;
+
+  /** Vista previa. */
+  preview: DownsizedSmall;
+
+  /** Vista previa en formato GIF. */
+  previewGIF: The480_WStill;
+
+  /** Vista previa en formato WebP. */
+  previewWebp: The480_WStill;
+
+  /** Imagen en resolución 480W. */
+  the480WStill: The480_WStill;
+
+  /** Versión HD del GIF. */
+  hd?: DownsizedSmall;
 }
 
-/** Representa un GIF en resolución fija. */
+/**
+ * @interface FixedHeight
+ * @description Representa un GIF en resolución fija.
+ */
 export interface FixedHeight {
-  height:   string;
-  width:    string;
-  size:     string;
-  url:      string;
-  mp4Size?: string;
-  mp4?:     string;
-  webpSize: string;
-  webp:     string;
-  frames?:  string;
-  hash?:    string;
-}
-
-/** Representa un GIF en formato reducido. */
-export interface DownsizedSmall {
-  height:  string;
-  width:   string;
-  mp4Size: string;
-  mp4:     string;
-}
-
-/** Representa un GIF en formato estático o de vista previa. */
-export interface The480_WStill {
+  /** Altura de la imagen. */
   height: string;
-  width:  string;
-  size:   string;
-  url:    string;
+
+  /** Ancho de la imagen. */
+  width: string;
+
+  /** Tamaño en bytes del archivo. */
+  size: string;
+
+  /** URL de la imagen. */
+  url: string;
+
+  /** Tamaño del MP4 en bytes (opcional). */
+  mp4Size?: string;
+
+  /** URL del MP4 (opcional). */
+  mp4?: string;
+
+  /** Tamaño en WebP. */
+  webpSize: string;
+
+  /** URL del WebP. */
+  webp: string;
+
+  /** Cantidad de cuadros del GIF (opcional). */
+  frames?: string;
+
+  /** Hash del GIF (opcional). */
+  hash?: string;
 }
 
-/** Representa un GIF con reproducción en bucle. */
-export interface Looping {
+/**
+ * @interface DownsizedSmall
+ * @description Representa un GIF en formato reducido.
+ */
+export interface DownsizedSmall {
+  /** Altura de la imagen. */
+  height: string;
+
+  /** Ancho de la imagen. */
+  width: string;
+
+  /** Tamaño del MP4. */
   mp4Size: string;
-  mp4:     string;
+
+  /** URL del MP4. */
+  mp4: string;
 }
 
-/** Clasificación del GIF según su contenido. */
+/**
+ * @interface The480_WStill
+ * @description Representa un GIF en formato estático o de vista previa.
+ */
+export interface The480_WStill {
+  /** Altura de la imagen. */
+  height: string;
+
+  /** Ancho de la imagen. */
+  width: string;
+
+  /** Tamaño en bytes. */
+  size: string;
+
+  /** URL de la imagen. */
+  url: string;
+}
+
+/**
+ * @interface Looping
+ * @description Representa un GIF con reproducción en bucle.
+ */
+export interface Looping {
+  /** Tamaño del archivo MP4. */
+  mp4Size: string;
+
+  /** URL del archivo MP4. */
+  mp4: string;
+}
+
+/**
+ * @enum Rating
+ * @description Clasificación del GIF según su contenido.
+ */
 export enum Rating {
+  /** Clasificación general. */
   G = "g",
 }
 
-/** Fecha de tendencia cuando el GIF no ha sido identificado como viral. */
+/**
+ * @enum TrendingDatetimeEnum
+ * @description Fecha de tendencia cuando el GIF no ha sido identificado como viral.
+ */
 export enum TrendingDatetimeEnum {
+  /** Valor por defecto cuando no hay tendencia. */
   The00000000000000 = "0000-00-00 00:00:00",
 }
 
-/** Tipos de elementos en Giphy. */
+/**
+ * @enum Type
+ * @description Tipos de elementos en Giphy.
+ */
 export enum Type {
+  /** Elemento de tipo GIF. */
   GIF = "gif",
 }
 
 /**
- * Información del usuario que subió el GIF.
+ * @interface User
+ * @description Información del usuario que subió el GIF.
  */
 export interface User {
-  avatarURL:    string;
-  bannerImage:  string;
-  bannerURL:    string;
-  profileURL:   string;
-  username:     string;
-  displayName:  string;
-  description:  string;
+  /** URL del avatar del usuario. */
+  avatarURL: string;
+
+  /** Imagen de banner del perfil. */
+  bannerImage: string;
+
+  /** URL del banner del usuario. */
+  bannerURL: string;
+
+  /** URL del perfil del usuario. */
+  profileURL: string;
+
+  /** Nombre de usuario. */
+  username: string;
+
+  /** Nombre visible o de presentación del usuario. */
+  displayName: string;
+
+  /** Descripción del perfil. */
+  description: string;
+
+  /** URL del perfil de Instagram del usuario. */
   instagramURL: string;
-  websiteURL:   string;
-  isVerified:   boolean;
+
+  /** Sitio web personal del usuario. */
+  websiteURL: string;
+
+  /** Indica si el usuario está verificado. */
+  isVerified: boolean;
 }
 
 /**
- * Metadatos asociados a la respuesta de la API.
+ * @interface Meta
+ * @description Metadatos asociados a la respuesta de la API.
  */
 export interface Meta {
-  status:     number;
-  msg:        string;
+  /** Código de estado HTTP. */
+  status: number;
+
+  /** Mensaje relacionado con el estado. */
+  msg: string;
+
+  /** ID único de la respuesta. */
   responseID: string;
 }
 
 /**
- * Información de paginación en la API de Giphy.
+ * @interface Pagination
+ * @description Información de paginación en la API de Giphy.
  */
 export interface Pagination {
+  /** Cantidad total de resultados disponibles. */
   totalCount: number;
-  count:      number;
-  offset:     number;
+
+  /** Cantidad de resultados devueltos en esta respuesta. */
+  count: number;
+
+  /** Desplazamiento de los resultados, útil para paginación. */
+  offset: number;
 }
+
