@@ -16,18 +16,23 @@ import { Gif } from '../../interfaces/gif.interface';
 })
 export class SearchPageComponent {
 
-  /** Servicio para realizar búsquedas de GIFs. */
+  /**
+   * Servicio inyectado que permite buscar GIFs en la API de Giphy.
+   */
   gifService = inject(GifsService);
 
-  /** Estado reactivo que almacena los resultados de búsqueda. */
+  /**
+   * Señal reactiva que almacena la lista de resultados de búsqueda de GIFs.
+   */
   gifs = signal<Gif[]>([]);
 
   /**
-   * Realiza una búsqueda de GIFs en la API y actualiza el estado de `gifs`.
+   * Ejecuta una búsqueda de GIFs en la API de Giphy usando el término proporcionado
+   * y actualiza el estado local con los resultados obtenidos.
    *
    * @param {string} query - Término de búsqueda ingresado por el usuario.
    */
-  onSearch(query: string) {
+  onSearch(query: string): void {
     this.gifService.searchGifs(query).subscribe((resp) => {
       this.gifs.set(resp);
     });

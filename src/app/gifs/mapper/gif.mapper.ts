@@ -2,7 +2,8 @@ import { Gif } from "../interfaces/gif.interface";
 import { GiphyItem } from "../interfaces/giphy.interfaces";
 
 /**
- * Clase de utilidad para mapear objetos de la API de Giphy a la estructura interna de GIFs.
+ * Clase de utilidad encargada de transformar datos recibidos desde la API de Giphy
+ * al formato interno utilizado por la aplicación.
  */
 export class GifMapper {
 
@@ -30,3 +31,4 @@ export class GifMapper {
     return items.map(this.mapGiphyItemToGif);
   }
 }
+

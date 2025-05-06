@@ -14,48 +14,64 @@ import { ScrollStateService } from '../../../shared/services/scroll-state.servic
 })
 export class TrendingPageComponent implements AfterViewInit {
 
-   /** Servicio para gestionar los GIFs de tendencias. */
-   gifService = inject(GifsService);
+  /**
+   * Servicio que gestiona los GIFs de tendencias.
+   *
+   * Se inyecta automáticamente mediante `inject`.
+   */
+  gifService = inject(GifsService);
 
-   /** Servicio para almacenar el estado del scroll. */
-   scrollStateService = inject(ScrollStateService);
+  /**
+   * Servicio que gestiona y guarda el estado del scroll.
+   *
+   * Se inyecta automáticamente mediante `inject`.
+   */
+  scrollStateService = inject(ScrollStateService);
 
-   /** Referencia al contenedor de los GIFs en el DOM. */
-   @ViewChild('groupDiv') scrollDivRef!: ElementRef<HTMLDivElement>;
+  /**
+   * Referencia al contenedor del grupo de GIFs.
+   *
+   * Usado para manejar eventos de scroll manualmente.
+   */
+  @ViewChild('groupDiv') scrollDivRef!: ElementRef<HTMLDivElement>;
 
-   /**
-    * Ajusta la posición del scroll al estado guardado al inicializar la vista.
-    */
-   ngAfterViewInit(): void {
-     const scrollDiv = this.scrollDivRef?.nativeElement;
-     if (!scrollDiv) return;
+  /**
+   * Ciclo de vida que se ejecuta después de inicializar la vista del componente.
+   *
+   * Restaura la posición del scroll desde el servicio `ScrollStateService`.
+   */
+  ngAfterViewInit(): void {
+    const scrollDiv = this.scrollDivRef?.nativeElement;
+    if (!scrollDiv) return;
 
-     scrollDiv.scrollTop = this.scrollStateService.trendigScrollState();
-   }
+    scrollDiv.scrollTop = this.scrollStateService.trendigScrollState();
+  }
 
-   /**
-    * Maneja el evento de scroll y actualiza el estado del scroll.
-    *
-    * @param {Event} event - Evento de desplazamiento.
-    */
-   onScroll(event: Event) {
-     const scrollDiv = this.scrollDivRef?.nativeElement;
-     if (!scrollDiv) return;
+  /**
+   * Evento que se dispara al hacer scroll dentro del contenedor.
+   *
+   * Guarda la posición del scroll y carga más GIFs si el usuario se aproxima al final.
+   *
+   * @param {Event} event - Evento de scroll emitido por el contenedor.
+   */
+  onScroll(event: Event): void {
+    const scrollDiv = this.scrollDivRef?.nativeElement;
+    if (!scrollDiv) return;
 
-     const scrollTop = scrollDiv.scrollTop;
-     const clientHeight = scrollDiv.clientHeight;
-     const scrollHeight = scrollDiv.scrollHeight;
+    const scrollTop = scrollDiv.scrollTop;
+    const clientHeight = scrollDiv.clientHeight;
+    const scrollHeight = scrollDiv.scrollHeight;
 
-     console.log({ scrollDiv, clientHeight, scrollHeight });
+    console.log({ scrollDiv, clientHeight, scrollHeight });
 
-     const isAtBottom = scrollTop + clientHeight + 300 >= scrollHeight;
+    const isAtBottom = scrollTop + clientHeight + 300 >= scrollHeight;
 
-     // Guarda la posición del scroll en el servicio
-     this.scrollStateService.trendigScrollState.set(scrollTop);
+    // Guarda la posición del scroll en el servicio
+    this.scrollStateService.trendigScrollState.set(scrollTop);
 
-     // Si el usuario llega al final, carga más GIFs
-     if (isAtBottom) {
-       this.gifService.loadTrendingGifs();
-     }
-   }
+    // Si el usuario llega al final, carga más GIFs
+    if (isAtBottom) {
+      this.gifService.loadTrendingGifs();
+    }
+  }
 }

@@ -1,18 +1,26 @@
-<!-- Contenedor principal de la aplicación -->
+<!-- Contenedor principal que ocupa toda la pantalla -->
 <div class="bg-slate-100 w-screen h-screen antialiased text-slate-300 selection:bg-blue-600 selection:text-white">
 
-  <!-- Contenedor flexible que ocupa toda la pantalla -->
-  <div class="flex flex-col relative w-screen">
+  <!-- Contenedor flexible que divide la pantalla en Sidebar y Contenido -->
+  <div class="flex h-screen overflow-hidden">
 
-    <!-- Menú lateral de navegación -->
-    <gif-side-menu></gif-side-menu>
+    <!-- Sidebar lateral de navegación con ancho dinámico -->
+    <div class="w-[100px] md:w-[190px] lg:w-[220px] bg-gray-900 text-slate-300 overflow-y-scroll shrink-0">
 
-    <!-- Contenido principal de la página -->
-    <div class="ml-[220px] px-4 flex flex-col flex-1 h-full text-slate-800">
+      <!-- Componente que representa el menú de navegación -->
+      <gif-side-menu></gif-side-menu>
+
+    </div>
+
+    <!-- Contenedor principal que ocupa el espacio restante según el tamaño del sidebar -->
+    <div class="flex flex-col flex-grow px-4 h-full text-slate-800">
+
       <!-- Punto de inserción de las rutas dinámicas -->
       <router-outlet></router-outlet>
+
     </div>
 
   </div>
 
 </div>
+

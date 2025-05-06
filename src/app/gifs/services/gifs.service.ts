@@ -13,27 +13,39 @@ const GIF_KEY = 'gifs';
  *
  * @returns {Record<string, Gif[]>} GIFs almacenados en localStorage.
  */
-const loadFromLocalStorage = () => {
+const loadFromLocalStorage = (): Record<string, Gif[]> => {
   const gifsFromLocalStorage = localStorage.getItem(GIF_KEY) ?? '{}';
   const gifs = JSON.parse(gifsFromLocalStorage);
   console.log(gifs);
   return gifs;
 }
 
+/**
+ * Servicio para gestionar los GIFs mediante la API de Giphy y el almacenamiento local.
+ * Se encarga de cargar tendencias, buscar GIFs y mantener historial.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class GifsService {
-  /** Cliente HTTP para realizar solicitudes a la API. */
+  /**
+   * Cliente HTTP para realizar solicitudes a la API.
+   */
   private http = inject(HttpClient);
 
-  /** Estado reactivo que almacena los GIFs de tendencias. */
+  /**
+   * Estado reactivo que almacena los GIFs de tendencias.
+   */
   trendingGifs = signal<Gif[]>([]);
 
-  /** Indica si la carga de GIFs está en proceso. */
+  /**
+   * Indica si la carga de GIFs de tendencias está en proceso.
+   */
   trendingGifsLoading = signal(false);
 
-  /** Página actual en la carga de tendencias. */
+  /**
+   * Página actual en la carga de tendencias.
+   */
   private trendingPage = signal(0);
 
   /**
@@ -50,21 +62,29 @@ export class GifsService {
     return groups;
   });
 
-  /** Historial de búsquedas de GIFs almacenado localmente. */
+  /**
+   * Historial de búsquedas de GIFs almacenado localmente.
+   */
   searchHistory = signal<Record<string, Gif[]>>(loadFromLocalStorage());
 
-  /** Llaves del historial de búsqueda. */
+  /**
+   * Llaves del historial de búsqueda.
+   *
+   * @returns {string[]} Lista de términos buscados.
+   */
   serachHistoryKeys = computed(() => Object.keys(this.searchHistory()))
 
   /**
-   * Constructor de la clase. Llama a la función para cargar GIFs de tendencias al iniciar.
+   * Constructor del servicio.
+   * Llama automáticamente a la función para cargar GIFs de tendencias al iniciar.
    */
   constructor() {
     this.loadTrendingGifs();
   }
 
   /**
-   * Guarda el historial de GIFs en el almacenamiento local.
+   * Efecto que guarda automáticamente los GIFs del historial en el localStorage
+   * cada vez que hay cambios en `searchHistory`.
    */
   saveGifsToLocalStorage = effect(() => {
     const historyString = JSON.stringify(this.searchHistory());
@@ -73,10 +93,9 @@ export class GifsService {
 
   /**
    * Carga los GIFs de tendencias desde la API de Giphy.
-   * Se detiene si ya hay una carga en proceso.
+   * Si ya hay una carga en proceso, se detiene.
    */
-  loadTrendingGifs() {
-
+  loadTrendingGifs(): void {
     if( this.trendingGifsLoading() ) return;
 
     this.trendingGifsLoading.set(true);
@@ -134,4 +153,3 @@ export class GifsService {
     return this.searchHistory()[query] ?? [];
   }
 }
-

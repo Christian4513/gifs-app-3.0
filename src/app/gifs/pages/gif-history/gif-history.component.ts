@@ -18,11 +18,13 @@ import { GifListComponent } from "../../components/gif-list/gif-list.component";
 })
 export class GifHistoryComponent {
 
-  /** Servicio para acceder al historial de GIFs. */
+  /**
+   * Servicio que permite acceder al historial de búsquedas de GIFs.
+   */
   gifService = inject(GifsService);
 
   /**
-   * Obtiene el parámetro `query` de la URL como un **signal** reactivo.
+   * Signal que representa el término de búsqueda obtenido dinámicamente desde los parámetros de la URL.
    *
    * @type {Signal<string>}
    */
@@ -31,14 +33,16 @@ export class GifHistoryComponent {
   );
 
   /**
-   * Recupera los GIFs asociados al término de búsqueda almacenado en el historial.
+   * Computed signal que devuelve la lista de GIFs correspondiente al término
+   * de búsqueda recuperado del historial.
    *
-   * @returns {Gif[]} Lista de GIFs guardados en el historial de búsqueda.
+   * @type {Signal<Gif[]>}
    */
   gifsByKey = computed(() => {
     return this.gifService.getHistoryGifs(this.query());
   });
 
 }
+
 
 

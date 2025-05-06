@@ -1,12 +1,17 @@
+/* Importa las utilidades y componentes de Tailwind CSS */
 @import "tailwindcss";
 
-
+/* Establece que el contenido de html y body no pueda hacer scroll (ni horizontal ni vertical) */
 html, body {
   overflow: hidden;
 }
 
+/* Aplica a todos los elementos: */
 * {
+  /* Usa el modelo de caja que incluye padding y border dentro del tamaño total del elemento */
   box-sizing: border-box;
+
+  /* Evita que los elementos sobrepasen el ancho del contenedor padre */
   max-width: 100%;
 }
 

@@ -1,14 +1,13 @@
+<!-- Contenedor principal que ocupa toda la altura de la pantalla y habilita el scroll vertical -->
+<div class="h-screen overflow-y-scroll grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-1">
 
+  <!-- Bucle para iterar sobre la lista de GIFs -->
+  @for (gif of gifs(); track gif){
 
-<div class="h-screen overflow-y-scroll  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-1"
->
-
-
-  @for (gif of gifs(); track gif) {
-
-
+    <!-- Componente que representa un item de la lista de GIFs, pasando la URL del GIF como propiedad -->
     <gif-list-item [imageUrl]="gif.url"></gif-list-item>
 
+  <!-- Cierre del bucle -->
   }
 
 </div>

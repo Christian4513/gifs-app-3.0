@@ -30,7 +30,9 @@ interface MenuOption {
 /**
  * Componente que gestiona las opciones del menú lateral de navegación.
  *
- * Contiene enlaces a distintas secciones de la aplicación, incluyendo tendencias y búsqueda de GIFs.
+ * Este componente proporciona enlaces a las distintas secciones de la aplicación, como las tendencias
+ * y la búsqueda de GIFs. Cada opción del menú tiene un icono, una etiqueta, una ruta de navegación
+ * y una descripción breve.
  */
 @Component({
   selector: 'gif-side-menu-options',
@@ -59,3 +61,4 @@ export class SideMenuOptionsComponent {
     }
   ];
 }
+
